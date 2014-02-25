@@ -1,0 +1,13 @@
+development:
+  adapter: postgresql
+  encoding: unicode
+  database: refuelly_development
+  user: pbo
+  password:
+
+test:
+  adapter: postgresql
+  encoding: unicode
+  database: refuelly_test
+  user: pbo
+  password:

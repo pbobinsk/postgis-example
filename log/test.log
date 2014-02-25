@@ -1,0 +1,24 @@
+  [1m[36m (1051.8ms)[0m  [1mDROP DATABASE IF EXISTS "refuelly_test"[0m
+  [1m[35m (1466.3ms)[0m  CREATE DATABASE "refuelly_test" ENCODING = 'unicode'
+  [1m[36mActiveRecord::SchemaMigration Load (0.8ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.2ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+--------------------------
+CafeTest: test_close_cafes
+--------------------------
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (63.2ms)[0m  [1mINSERT INTO "cafes" ("created_at", "latitude", "longitude", "name", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["created_at", Tue, 25 Feb 2014 07:51:56 UTC +00:00], ["latitude", #<BigDecimal:3f21ce8,'0.4E2',9(45)>], ["longitude", #<BigDecimal:3f21ae0,'-0.77E2',9(45)>], ["name", "Far Cafe"], ["updated_at", Tue, 25 Feb 2014 07:51:56 UTC +00:00]]
+  [1m[35m (36.7ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.5ms)[0m  INSERT INTO "cafes" ("created_at", "latitude", "longitude", "name", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"  [["created_at", Tue, 25 Feb 2014 07:51:56 UTC +00:00], ["latitude", #<BigDecimal:408fdc8,'0.3901E2',18(45)>], ["longitude", #<BigDecimal:408fc10,'-0.7598999999 999999E2',27(45)>], ["name", "Close Cafe"], ["updated_at", Tue, 25 Feb 2014 07:51:56 UTC +00:00]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35mCafe Load (1.4ms)[0m  SELECT "cafes".* FROM "cafes" WHERE (
+ ST_DWithin(
+ ST_GeographyFromText(
+ 'SRID=4326;POINT(' || cafes.longitude || ' ' || cafes.latitude || ')'
+ ),
+ ST_GeographyFromText('SRID=4326;POINT(-76.000000 39.000000)'),
+ 2000
+ )
+ )
+  [1m[36m (0.2ms)[0m  [1mROLLBACK[0m

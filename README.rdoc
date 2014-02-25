@@ -1,0 +1,5 @@
+== PostGIS on Rails Example
+
+This is the source code for the blog post found on @ngauthier's web site:
+
+http://ngauthier.com/2013/08/postgis-and-rails-a-simple-approach.html
